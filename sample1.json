@@ -1,0 +1,355 @@
+{
+    "status": 200,
+    "data": {
+        "availability": {
+            "2026-03-25": [
+                {
+                    "name": "ALL DAY",
+                    "shift_persistent_id": "ahNzfnNldmVucm9vbXMtc2VjdXJlchwLEg9uaWdodGxvb3BfVmVudWUYgICy4I-3sAoM-LUNCH-1689807850.612994",
+                    "shift_id": "ahNzfnNldmVucm9vbXMtc2VjdXJlcjgLEg9uaWdodGxvb3BfVmVudWUYgICy4I-3sAoMCxIPc3JfU2hpZnREZWZhdWx0GICAnaOY-rUKDA",
+                    "shift_category": "LUNCH",
+                    "is_closed": false,
+                    "upsell_categories": [],
+                    "times": [
+                        {
+                            "type": "request",
+                            "sort_order": 20,
+                            "time": "11:00 AM",
+                            "time_iso": "2026-03-25 11:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 21,
+                            "time": "11:15 AM",
+                            "time_iso": "2026-03-25 11:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 22,
+                            "time": "11:30 AM",
+                            "time_iso": "2026-03-25 11:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 23,
+                            "time": "11:45 AM",
+                            "time_iso": "2026-03-25 11:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 24,
+                            "time": "12:00 PM",
+                            "time_iso": "2026-03-25 12:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 25,
+                            "time": "12:15 PM",
+                            "time_iso": "2026-03-25 12:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 26,
+                            "time": "12:30 PM",
+                            "time_iso": "2026-03-25 12:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 27,
+                            "time": "12:45 PM",
+                            "time_iso": "2026-03-25 12:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 28,
+                            "time": "1:00 PM",
+                            "time_iso": "2026-03-25 13:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 29,
+                            "time": "1:15 PM",
+                            "time_iso": "2026-03-25 13:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 30,
+                            "time": "1:30 PM",
+                            "time_iso": "2026-03-25 13:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 31,
+                            "time": "1:45 PM",
+                            "time_iso": "2026-03-25 13:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 32,
+                            "time": "2:00 PM",
+                            "time_iso": "2026-03-25 14:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 33,
+                            "time": "2:15 PM",
+                            "time_iso": "2026-03-25 14:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 34,
+                            "time": "2:30 PM",
+                            "time_iso": "2026-03-25 14:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 35,
+                            "time": "2:45 PM",
+                            "time_iso": "2026-03-25 14:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 36,
+                            "time": "3:00 PM",
+                            "time_iso": "2026-03-25 15:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 37,
+                            "time": "3:15 PM",
+                            "time_iso": "2026-03-25 15:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 38,
+                            "time": "3:30 PM",
+                            "time_iso": "2026-03-25 15:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 39,
+                            "time": "3:45 PM",
+                            "time_iso": "2026-03-25 15:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 40,
+                            "time": "4:00 PM",
+                            "time_iso": "2026-03-25 16:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 41,
+                            "time": "4:15 PM",
+                            "time_iso": "2026-03-25 16:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 42,
+                            "time": "4:30 PM",
+                            "time_iso": "2026-03-25 16:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 43,
+                            "time": "4:45 PM",
+                            "time_iso": "2026-03-25 16:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 44,
+                            "time": "5:00 PM",
+                            "time_iso": "2026-03-25 17:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 45,
+                            "time": "5:15 PM",
+                            "time_iso": "2026-03-25 17:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 46,
+                            "time": "5:30 PM",
+                            "time_iso": "2026-03-25 17:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 47,
+                            "time": "5:45 PM",
+                            "time_iso": "2026-03-25 17:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 48,
+                            "time": "6:00 PM",
+                            "time_iso": "2026-03-25 18:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 49,
+                            "time": "6:15 PM",
+                            "time_iso": "2026-03-25 18:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 50,
+                            "time": "6:30 PM",
+                            "time_iso": "2026-03-25 18:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 51,
+                            "time": "6:45 PM",
+                            "time_iso": "2026-03-25 18:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 52,
+                            "time": "7:00 PM",
+                            "time_iso": "2026-03-25 19:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 53,
+                            "time": "7:15 PM",
+                            "time_iso": "2026-03-25 19:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 54,
+                            "time": "7:30 PM",
+                            "time_iso": "2026-03-25 19:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 55,
+                            "time": "7:45 PM",
+                            "time_iso": "2026-03-25 19:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 56,
+                            "time": "8:00 PM",
+                            "time_iso": "2026-03-25 20:00:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 57,
+                            "time": "8:15 PM",
+                            "time_iso": "2026-03-25 20:15:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 58,
+                            "time": "8:30 PM",
+                            "time_iso": "2026-03-25 20:30:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        },
+                        {
+                            "type": "request",
+                            "sort_order": 59,
+                            "time": "8:45 PM",
+                            "time_iso": "2026-03-25 20:45:00",
+                            "access_persistent_id": null,
+                            "is_requestable": false
+                        }
+                    ],
+                    "is_previous_version": false,
+                    "is_forced_empty_availability": false,
+                    "duration_minutes_by_party_size": {
+                        "1": 90,
+                        "2": 120,
+                        "3": 120,
+                        "4": 120,
+                        "5": 150,
+                        "6": 150,
+                        "7": 150,
+                        "8": 150,
+                        "9": 180,
+                        "-1": 180
+                    }
+                }
+            ]
+        }
+    },
+    "csrftoken": null,
+    "request_id": "1771899855.564540de69a83b755a625fb8833e0eb1"
+}

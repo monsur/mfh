@@ -1,0 +1,50 @@
+name: URL Attribute Monitor
+
+on:
+  # Run every 15 minutes
+  schedule:
+    - cron: '*/15 * * * *'
+
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  check-url:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run URL checker
+        id: checker
+        run: |
+          python check_url.py
+          echo "exit_code=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Send email notification
+        if: steps.checker.outcome == 'success'
+        uses: peter-evans/sendgrid-action@v1
+        with:
+          api-key: ${{ secrets.SENDGRID_API_KEY }}
+          to: ${{ secrets.NOTIFICATION_EMAIL }}
+          from: ${{ secrets.SENDGRID_FROM_EMAIL }}
+          subject: '✓ Attribute Found - URL Monitor'
+          text: |
+            The monitored attribute was found!
+
+            Timestamp: ${{ github.event.repository.updated_at }}
+            Workflow: ${{ github.workflow }}
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Check the workflow logs for details.

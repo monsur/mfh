@@ -1,0 +1,7 @@
+# URL Attribute Checker Configuration
+
+# The URL to check (must return JSON)
+url: "https://www.sevenrooms.com/api-yoa/availability/ng/widget/range?venue=mamasfishhouserestaurantinn&party_size=2&halo_size_interval=100&start_date=2026-03-25&num_days=1&channel=SEVENROOMS_WIDGET&exclude_pdr=true&actual_id="
+
+# Request timeout in seconds
+timeout: 10
