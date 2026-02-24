@@ -93,8 +93,17 @@ def check_url(url: str, timeout: int = 10) -> int:
     Returns exit code: 0 (found), 1 (not found), 2 (error)
     """
     try:
+        # Set headers to mimic Chrome browser
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+        }
+
         print(f"Fetching URL: {url}")
-        response = requests.get(url, timeout=timeout)
+        response = requests.get(url, headers=headers, timeout=timeout)
         response.raise_for_status()
 
         print(f"Status code: {response.status_code}")
