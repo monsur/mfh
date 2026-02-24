@@ -27,15 +27,7 @@ jobs:
 
       - name: Run URL checker
         id: checker
-        run: |
-          OUTPUT=$(python check_url.py 2>&1)
-          EXIT_CODE=$?
-          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
-          echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT"
-          exit $EXIT_CODE
+        run: python check_url.py
         continue-on-error: true
 
       - name: Send email notification
