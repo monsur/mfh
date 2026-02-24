@@ -1,10 +1,7 @@
 name: URL Attribute Monitor
 
 on:
-  schedule:
-    - cron: '*/7 * * * *'
-
-  # Allow manual trigger for testing
+  # Triggered via API from Digital Ocean cron
   workflow_dispatch:
 
 jobs:
