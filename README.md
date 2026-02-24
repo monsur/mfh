@@ -1,13 +1,15 @@
 # Mama's Fish House Reservation Monitor
 
-A lightweight monitoring system that checks Mama's Fish House restaurant for reservation availability and sends email notifications when slots become available.
+A lightweight monitoring system that checks Mama's Fish House restaurant for reservation availability and sends **email and Slack notifications** when slots become available.
 
 ## Features
 
 - Fetches SevenRooms API and parses JSON response for bookable reservations
 - Checks for `"type": "book"` in availability times array
 - Returns clear exit codes for pipeline integration
-- Sends email notifications via SendGrid when availability is found (free, instant push notifications)
+- Sends **dual notifications** when availability is found:
+  - **Email** via SendGrid (free, detailed info)
+  - **Slack** via webhook (instant chat notification)
 - Runs automatically every 15 minutes via GitHub Actions
 
 ## Setup
@@ -24,7 +26,7 @@ attributes:
 timeout: 10
 ```
 
-### 2. Set Up SendGrid
+### 2. Set Up SendGrid (Email Notifications)
 
 1. Sign up for [SendGrid](https://sendgrid.com/) (free tier: 100 emails/day)
 2. Create an API key:
@@ -36,15 +38,34 @@ timeout: 10
    - Go to Settings → Sender Authentication → Verify a Single Sender
    - Enter your email and verify it
 
-### 3. Configure GitHub Secrets
+### 3. Set Up Slack (Chat Notifications)
+
+1. Go to https://api.slack.com/apps
+2. Click **Create New App** → **From scratch**
+3. Name it "Mamas Fish House Monitor"
+4. Select your workspace (or create a new one at https://slack.com/create)
+5. Click **Incoming Webhooks** in the sidebar
+6. Toggle **Activate Incoming Webhooks** to ON
+7. Click **Add New Webhook to Workspace**
+8. Choose a channel (create `#reservations` or use `#general`)
+9. Click **Allow**
+10. Copy the **Webhook URL** (looks like: `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXX`)
+
+### 4. Configure GitHub Secrets
 
 Add these secrets to your GitHub repository (Settings > Secrets and variables > Actions):
 
+**SendGrid (Email):**
 - `SENDGRID_API_KEY`: Your SendGrid API key
 - `SENDGRID_FROM_EMAIL`: Email address to send from (must be verified in SendGrid)
 - `NOTIFICATION_EMAIL`: Email address to receive notifications
 
-### 4. Push to GitHub
+**Slack (Chat):**
+- `SLACK_WEBHOOK_URL`: Your Slack webhook URL
+
+**Total: 4 GitHub Secrets**
+
+### 5. Push to GitHub
 
 ```bash
 git init
@@ -129,25 +150,50 @@ Create separate config files and workflow files for each URL you want to monitor
 - Look for errors in the GitHub Actions logs
 - Check your spam folder
 
-### Email notifications on your phone
+### Not receiving Slack messages?
 
-Most email apps (Gmail, Apple Mail, Outlook) send **instant push notifications** to your phone, so you'll get alerted immediately when reservations become available - just like SMS!
+- Verify `SLACK_WEBHOOK_URL` is correctly set in GitHub Secrets
+- Check the webhook URL is complete and starts with `https://hooks.slack.com/services/`
+- Verify the Slack app has permission to post to the channel
+- Look for errors in the GitHub Actions logs (Slack notification step)
+
+### Testing Slack locally
+
+```bash
+export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+python test_slack.py
+```
+
+### Push notifications
+
+- **Email**: Most email apps send instant push notifications to your phone
+- **Slack**: Slack mobile app provides real-time push notifications
+- Together, you're covered on all devices!
 
 ## Cost
 
 - **GitHub Actions**: Free (2000 minutes/month for private repos, unlimited for public)
 - **SendGrid Email**: Free tier (100 emails/day) - more than sufficient
+- **Slack**: Free (unlimited messages on free workspace)
 
 **Total: $0/month** ✅
 
-### Why Email Works Great
+### Why Email + Slack Works Great
 
-- ✅ **Free forever** - No trial limits or paid upgrades
-- ✅ **Instant notifications** - Email apps push to your phone immediately
-- ✅ **Clickable links** - Tap to book directly from the email
-- ✅ **Detailed info** - Room for context and instructions
-- ✅ **Searchable history** - Keep a record of when slots were available
-- ✅ **Reliable** - No SMS regulations or delivery issues
+**Email Benefits:**
+- ✅ Free forever, no limits
+- ✅ Detailed info with formatting
+- ✅ Searchable history
+- ✅ Clickable links
+
+**Slack Benefits:**
+- ✅ Free forever, no limits
+- ✅ Real-time chat notifications
+- ✅ Clean, formatted messages
+- ✅ Mobile push notifications
+- ✅ Easy to see at a glance
+
+**Together:** Best of both worlds - instant alerts + permanent records!
 
 ## License
 
