@@ -56,8 +56,8 @@ jobs:
           # Escape for JSON (replace newlines, quotes, backslashes)
           EMAIL_BODY_JSON=$(echo "$EMAIL_BODY" | jq -Rs .)
 
-          # Send email via SendGrid API
-          curl -X POST https://api.sendgrid.com/v3/mail/send \
+          # Send email via SendGrid API and capture response
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST https://api.sendgrid.com/v3/mail/send \
             -H "Authorization: Bearer ${{ secrets.SENDGRID_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{
@@ -70,4 +70,17 @@ jobs:
                 \"type\": \"text/plain\",
                 \"value\": $EMAIL_BODY_JSON
               }]
-            }"
+            }")
+
+          # Extract HTTP status code and response body
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          RESPONSE_BODY=$(echo "$RESPONSE" | head -n-1)
+
+          # Check if successful (202 is SendGrid's success code)
+          if [ "$HTTP_CODE" = "202" ]; then
+            echo "✅ Email sent successfully!"
+          else
+            echo "❌ Failed to send email. HTTP Code: $HTTP_CODE"
+            echo "Response: $RESPONSE_BODY"
+            exit 1
+          fi
