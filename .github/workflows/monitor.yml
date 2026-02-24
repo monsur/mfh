@@ -28,8 +28,14 @@ jobs:
       - name: Run URL checker
         id: checker
         run: |
-          python check_url.py
-          echo "exit_code=$?" >> $GITHUB_OUTPUT
+          OUTPUT=$(python check_url.py 2>&1)
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          echo "output<<EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT"
+          exit $EXIT_CODE
         continue-on-error: true
 
       - name: Send email notification
@@ -39,12 +45,15 @@ jobs:
           api-key: ${{ secrets.SENDGRID_API_KEY }}
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.SENDGRID_FROM_EMAIL }}
-          subject: "🎉 Mama's Fish House - Reservations Available!"
+          subject: "🎉 Mamas Fish House - Reservations Available!"
           text: |
-            Great news! Reservations are available at Mama's Fish House!
+            Great news! Reservations are available at Mamas Fish House!
 
             Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn
 
             This check ran at: ${{ github.event.repository.updated_at }}
+
+            Check details:
+            ${{ steps.checker.outputs.output }}
 
             Don't wait - popular slots fill up fast!
