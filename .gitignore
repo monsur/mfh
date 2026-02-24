@@ -25,3 +25,4 @@ htmlcov/
 
 # Local config overrides (if you want to test locally without committing changes)
 config.local.yaml
+.env
