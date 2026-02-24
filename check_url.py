@@ -27,34 +27,64 @@ def load_config(config_path: str = "config.yaml") -> dict:
 
 def parse_response(data: Dict[str, Any]) -> Tuple[bool, str]:
     """
-    Parse the JSON response and check for specific attributes.
+    Parse the Mama's Fish House reservation API response.
 
-    This method contains all the parsing logic specific to the API being monitored.
-    Modify this method to customize what you're looking for in the response.
+    Checks for bookable reservation slots in the response.
 
     Args:
         data: The parsed JSON response as a dictionary
 
     Returns:
         Tuple of (found: bool, message: str)
-        - found: True if the desired attributes are found, False otherwise
+        - found: True if bookable slots are found, False otherwise
         - message: Description of what was found or not found
+
+    Raises:
+        ValueError: If status is not 200, indicating an API error
     """
-    # Example: Check if 'status' field exists and is not empty
-    if 'status' in data and data['status']:
-        return True, f"Found status: {data['status']}"
+    # Check if status is 200 (success)
+    status = data.get('status')
+    if status != 200:
+        raise ValueError(f"API returned non-200 status: {status}")
 
-    # Example: Check for nested attributes
-    # if 'data' in data and 'availability' in data['data']:
-    #     availability = data['data']['availability']
-    #     if availability:
-    #         return True, f"Found availability: {availability}"
+    # Navigate to the times array
+    # Structure: data.availability.<date>[0].times[]
+    try:
+        availability_data = data.get('data', {}).get('availability', {})
 
-    # Example: Check for array with items
-    # if 'results' in data and isinstance(data['results'], list) and len(data['results']) > 0:
-    #     return True, f"Found {len(data['results'])} results"
+        # Get the first date's availability (there should only be one)
+        if not availability_data:
+            return False, "No availability data found"
 
-    return False, "Attribute not found in response"
+        # Get the first date key
+        dates = list(availability_data.keys())
+        if not dates:
+            return False, "No dates in availability data"
+
+        first_date = dates[0]
+        date_slots = availability_data[first_date]
+
+        if not date_slots or len(date_slots) == 0:
+            return False, "No slots for date"
+
+        # Check the times array
+        times = date_slots[0].get('times', [])
+        if not times:
+            return False, "No times array found"
+
+        # Look for any time slot with type "book"
+        bookable_times = []
+        for time_slot in times:
+            if time_slot.get('type') == 'book':
+                bookable_times.append(time_slot.get('time', 'Unknown time'))
+
+        if bookable_times:
+            return True, f"Found {len(bookable_times)} bookable slot(s): {', '.join(bookable_times[:3])}{'...' if len(bookable_times) > 3 else ''}"
+        else:
+            return False, "No bookable slots available (only 'request' slots found)"
+
+    except (KeyError, IndexError, TypeError) as e:
+        return False, f"Error parsing response structure: {e}"
 
 
 def check_url(url: str, timeout: int = 10) -> int:
@@ -77,14 +107,19 @@ def check_url(url: str, timeout: int = 10) -> int:
             return 2
 
         # Use the parsing method to check the response
-        found, message = parse_response(data)
+        try:
+            found, message = parse_response(data)
 
-        if found:
-            print(f"\nSUCCESS: {message}")
-            return 0
-        else:
-            print(f"\nNOT FOUND: {message}")
-            return 1
+            if found:
+                print(f"\nSUCCESS: {message}")
+                return 0
+            else:
+                print(f"\nNOT FOUND: {message}")
+                return 1
+        except ValueError as e:
+            # Status was not 200 or other validation error
+            print(f"ERROR: {e}", file=sys.stderr)
+            return 2
 
     except requests.exceptions.Timeout:
         print(f"ERROR: Request timed out after {timeout} seconds", file=sys.stderr)
