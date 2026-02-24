@@ -26,8 +26,24 @@ jobs:
 
       - name: Run URL checker
         id: checker
-        run: python check_url.py
-        continue-on-error: true
+        run: |
+          python check_url.py
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+
+          # Exit code 0: Success (reservations found) - continue
+          # Exit code 1: Not found (no reservations) - silent success
+          # Exit code 2: Error (network/API issues) - should fail
+          if [ $EXIT_CODE -eq 2 ]; then
+            echo "❌ Error occurred while checking reservations"
+            exit 1
+          elif [ $EXIT_CODE -eq 1 ]; then
+            echo "ℹ️ No reservations available"
+            exit 0
+          else
+            echo "✅ Reservations found!"
+            exit 0
+          fi
 
       - name: Send email notification
         if: steps.checker.outcome == 'success'
