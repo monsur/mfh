@@ -2,7 +2,7 @@ name: URL Attribute Monitor
 
 on:
   schedule:
-    - cron: '*/19 * * * *'
+    - cron: '*/13 * * * *'
 
   # Allow manual trigger for testing
   workflow_dispatch:
