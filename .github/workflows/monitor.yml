@@ -6,7 +6,7 @@ on:
     - cron: "*/15 * * * *"
 
   # Allow manual trigger for testing
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   check-url:
