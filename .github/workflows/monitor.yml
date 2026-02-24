@@ -48,9 +48,6 @@ jobs:
 
           This check ran at: ${{ github.event.repository.updated_at }}
 
-          Check details:
-          ${{ steps.checker.outputs.output }}
-
           Don't wait - popular slots fill up fast!"
 
           # Escape for JSON (replace newlines, quotes, backslashes)
