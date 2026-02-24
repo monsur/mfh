@@ -52,7 +52,7 @@ jobs:
           import os
           client = Client(os.environ['TWILIO_ACCOUNT_SID'], os.environ['TWILIO_AUTH_TOKEN'])
           message = client.messages.create(
-              body='🎉 Mamas Fish House has availability! Book now.',
+              body='🎉 Mama'\''s Fish House has availability! Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn',
               from_=os.environ['TWILIO_FROM_PHONE'],
               to=os.environ['TWILIO_TO_PHONE']
           )

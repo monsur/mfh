@@ -13,7 +13,7 @@ if not all([account_sid, auth_token, from_phone, to_phone]):
 
 client = Client(account_sid, auth_token)
 message = client.messages.create(
-    body="Test: Mama's Fish House monitoring is working! 🎉",
+    body="🎉 Mama's Fish House has availability! Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn",
     from_=from_phone,
     to=to_phone
 )
