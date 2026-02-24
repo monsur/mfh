@@ -40,20 +40,18 @@ jobs:
 
       - name: Send email notification
         if: steps.checker.outcome == 'success'
-        uses: peter-evans/sendgrid-action@v1
-        with:
-          api-key: ${{ secrets.SENDGRID_API_KEY }}
-          to: ${{ secrets.NOTIFICATION_EMAIL }}
-          from: ${{ secrets.SENDGRID_FROM_EMAIL }}
-          subject: "🎉 Mamas Fish House - Reservations Available!"
-          text: |
-            Great news! Reservations are available at Mamas Fish House!
-
-            Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn
-
-            This check ran at: ${{ github.event.repository.updated_at }}
-
-            Check details:
-            ${{ steps.checker.outputs.output }}
-
-            Don't wait - popular slots fill up fast!
+        run: |
+          curl -X POST https://api.sendgrid.com/v3/mail/send \
+            -H "Authorization: Bearer ${{ secrets.SENDGRID_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "personalizations": [{
+                "to": [{"email": "${{ secrets.NOTIFICATION_EMAIL }}"}]
+              }],
+              "from": {"email": "${{ secrets.SENDGRID_FROM_EMAIL }}"},
+              "subject": "🎉 Mamas Fish House - Reservations Available!",
+              "content": [{
+                "type": "text/plain",
+                "value": "Great news! Reservations are available at Mamas Fish House!\n\nBook now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn\n\nThis check ran at: ${{ github.event.repository.updated_at }}\n\nCheck details:\n${{ steps.checker.outputs.output }}\n\nDon'\''t wait - popular slots fill up fast!"
+              }]
+            }'
