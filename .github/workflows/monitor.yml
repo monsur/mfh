@@ -46,7 +46,7 @@ jobs:
           fi
 
       - name: Send email notification
-        if: steps.checker.outcome == 'success'
+        if: steps.checker.outputs.exit_code == '0'
         run: |
           # Build email body
           EMAIL_BODY="Great news! Reservations are available at Mamas Fish House!
@@ -90,7 +90,7 @@ jobs:
           fi
 
       - name: Send Slack notification
-        if: steps.checker.outcome == 'success'
+        if: steps.checker.outputs.exit_code == '0'
         run: |
           # Send Slack notification via webhook
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
