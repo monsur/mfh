@@ -1,5 +1,5 @@
 {
-    "status": 200,
+    "status": 400,
     "data": {
         "availability": {
             "2026-03-25": [
