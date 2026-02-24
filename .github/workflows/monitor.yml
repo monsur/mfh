@@ -39,7 +39,7 @@ jobs:
           api-key: ${{ secrets.SENDGRID_API_KEY }}
           to: ${{ secrets.NOTIFICATION_EMAIL }}
           from: ${{ secrets.SENDGRID_FROM_EMAIL }}
-          subject: '🎉 Mama'\''s Fish House - Reservations Available!'
+          subject: "🎉 Mama's Fish House - Reservations Available!"
           text: |
             Great news! Reservations are available at Mama's Fish House!
 
