@@ -52,7 +52,7 @@ jobs:
 
           Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn
 
-          This check ran at: ${{ github.event.repository.updated_at }}
+          This check ran at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
 
           Don't wait - popular slots fill up fast!"
 
@@ -116,7 +116,7 @@ jobs:
                   "elements": [
                     {
                       "type": "mrkdwn",
-                      "text": "Check ran at: '"${{ github.event.repository.updated_at }}"'"
+                      "text": "Check ran at: '"$(date -u '+%Y-%m-%d %H:%M:%S UTC')"'"
                     }
                   ]
                 }
