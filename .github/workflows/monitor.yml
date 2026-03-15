@@ -48,7 +48,7 @@ jobs:
         if: steps.checker.outputs.exit_code == '0'
         run: |
           # Build email body
-          EMAIL_BODY="Great news! Reservations are available at Mamas Fish House!
+          EMAIL_BODY="March 25 reservations are available at Mamas Fish House!
 
           Book now: https://www.sevenrooms.com/reservations/mamasfishhouserestaurantinn
 
@@ -95,13 +95,13 @@ jobs:
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "🎉 *Mamas Fish House - Reservations Available!*",
+              "text": "🎉 *March 25 Mamas Fish House - Reservations Available!*",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "🎉 *Mamas Fish House - Reservations Available!*\n\nGreat news! Reservations are available at Mamas Fish House!"
+                    "text": "🎉 *March 25 Mamas Fish House - Reservations Available!*\n\nGreat news! Reservations are available at Mamas Fish House!"
                   }
                 },
                 {
