@@ -68,7 +68,7 @@ jobs:
                 \"to\": [{\"email\": \"${{ secrets.NOTIFICATION_EMAIL }}\"}]
               }],
               \"from\": {\"email\": \"${{ secrets.SENDGRID_FROM_EMAIL }}\"},
-              \"subject\": \"🎉 Mamas Fish House - Reservations Available!\",
+              \"subject\": \"🎉 March 25 Mamas Fish House - Reservations Available!\",
               \"content\": [{
                 \"type\": \"text/plain\",
                 \"value\": $EMAIL_BODY_JSON
